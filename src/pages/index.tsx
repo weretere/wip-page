@@ -1,11 +1,12 @@
 import Head from "next/head"
 import React from "react"
 
+import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Main from "../components/Main"
-import Footer from "../components/Footer"
 
 interface Props{
+    none: string
 }
 
 interface State{
@@ -25,7 +26,7 @@ class Home extends React.Component<Props, State> {
         loading: "is-loading"
     }
     timeoutId: NodeJS.Timeout | undefined;
-    article: string = "";
+    article = "";
 
 
     constructor(props: Props) {
@@ -37,7 +38,7 @@ class Home extends React.Component<Props, State> {
 
     componentDidMount() {
         this.timeoutId = setTimeout(() => {
-            this.setState({ loading: "" })
+            this.setState({loading: ""})
         }, 100)
     }
 
@@ -90,17 +91,17 @@ class Home extends React.Component<Props, State> {
                 <div>
                     <Head>
                         <title>Next.js Starter</title>
-                        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i" rel="stylesheet" />
+                        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i&display=optional" rel="stylesheet" />
                     </Head>
 
                     <div id="wrapper">
                         <Header onOpenArticle={this.handleOpenArticle} timeout={this.state.timeout} />
                         <Main
-                            isArticleVisible={this.state.isArticleVisible}
-                            timeout={this.state.timeout}
-                            articleTimeout={this.state.articleTimeout}
                             article={this.state.article}
+                            articleTimeout={this.state.articleTimeout}
+                            isArticleVisible={this.state.isArticleVisible}
                             onCloseArticle={this.handleCloseArticle}
+                            timeout={this.state.timeout}
                         />
                         <Footer timeout={this.state.timeout} />
                     </div>

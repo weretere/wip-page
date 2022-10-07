@@ -1,9 +1,11 @@
+import {memo} from "react";
+
 interface propTypes {
-    onOpenArticle: Function,
+    onOpenArticle: (article: string) => void,
     timeout: boolean
 }
 
-const Header = (props: propTypes) => (
+const Header = memo((props: propTypes) => (
     <header id="header" style={props.timeout ? {display: 'none'} : {}}>
         <div className="content">
             <div className="inner">
@@ -24,6 +26,6 @@ const Header = (props: propTypes) => (
             </ul>
         </nav>
     </header>
-)
+));
 
 export default Header
